@@ -106,6 +106,15 @@ Backlog, gelecek sprintler için sağlam bir temel oluşturacak şekilde düzenl
 Daily Scrum
 Daily Scrum toplantılarımız, ekip içi iletişimin sağlanması amacıyla Microsoft Teams ve WhatsApp platformları üzerinden yürütülmektedir. Ancak henüz toplantı kayıtları ya da ekran görüntüleri toplanmamıştır. Bu toplantılar sayesinde güncel ilerlemeler paylaşılmakta ve iş bölümü planlanmaktadır.
 
+
+![WhatsApp Image 2025-07-07 at 14 17 29](https://github.com/user-attachments/assets/ce0b3820-4373-4a81-80ab-48166a7159cf)
+![WhatsApp Image 2025-07-07 at 14 14 06](https://github.com/user-attachments/assets/0d085343-b361-4e36-9907-0e3326b71bd8)
+![WhatsApp Image 2025-07-07 at 14 40 26](https://github.com/user-attachments/assets/d079d67b-813a-427b-a35a-158a18587a95)
+---
+
+![WhatsApp Image 2025-07-07 at 14 21 25](https://github.com/user-attachments/assets/c9f80465-222a-4888-9db5-3573ee6d3801)
+
+
 ---
 
 ![WhatsApp Image 2025-07-07 at 13 44 05](https://github.com/user-attachments/assets/19301da7-55f0-4f2f-927d-1d4516bbae6a)
