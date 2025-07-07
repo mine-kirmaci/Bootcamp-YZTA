@@ -104,11 +104,11 @@ Backlog Düzeni ve Story Seçimleri
 Backlog, gelecek sprintler için sağlam bir temel oluşturacak şekilde düzenlenmiştir. Görevler, sprint başına tahmini 100 puanı aşmayacak biçimde dağıtılmıştır. Henüz kod yazımına geçilmediği için sprint görevleri daha çok analiz, tasarım ve planlama odaklıdır.
 
 Daily Scrum
-Daily Scrum toplantılarımız, ekip içi iletişimin sağlanması amacıyla Discord, Microsoft Teams ve WhatsApp platformları üzerinden yürütülmektedir. Ancak henüz toplantı kayıtları ya da ekran görüntüleri toplanmamıştır. Bu toplantılar sayesinde güncel ilerlemeler paylaşılmakta ve iş bölümü planlanmaktadır.
+Daily Scrum toplantılarımız, ekip içi iletişimin sağlanması amacıyla Microsoft Teams ve WhatsApp platformları üzerinden yürütülmektedir. Ancak henüz toplantı kayıtları ya da ekran görüntüleri toplanmamıştır. Bu toplantılar sayesinde güncel ilerlemeler paylaşılmakta ve iş bölümü planlanmaktadır.
 
 ---
 
-![WhatsApp Image 2025-07-07 at 13 07 24](https://github.com/user-attachments/assets/e690c5f3-fc1f-4e5f-aead-73e9bc7a4cab)
+![WhatsApp Image 2025-07-07 at 13 44 05](https://github.com/user-attachments/assets/19301da7-55f0-4f2f-927d-1d4516bbae6a)
 
 ---
 
@@ -133,7 +133,7 @@ Ekip iki gruba ayrılarak çalışmalarını planladı. Bir grup proje için bel
 Grup 1: Caner, Mine
 Grup 2: Yusuf, Merve
 
-Toplantıların düzenli aralıklarla yapılması ve iletişimin Discord, Teams ve WhatsApp üzerinden sürdürülmesi kararlaştırıldı.
+Toplantıların düzenli aralıklarla yapılması ve iletişimin Microsoft Teams ve WhatsApp üzerinden sürdürülmesi kararlaştırıldı.
 Ayrıca ilerleyen sprintlerde ihtiyaç duyulabilecek dokümanlar, görseller ve metinler için bir ihtiyaç listesi oluşturularak ekip üyeleri arasında paylaşıldı.
 
 ---
