@@ -147,4 +147,70 @@ Ayrıca ilerleyen sprintlerde ihtiyaç duyulabilecek dokümanlar, görseller ve 
 
 ---
 
+# Sprint 2
+
+---
+
+User Story’ler: User Story’ler product backlog içerisine yazılmıştır. Product backlog item’lara tıklanarak hikayelerin detayları incelenebilmektedir.
+
+Sprint içinde tamamlanması tahmin edilen puan: 100 Puan
+
+Puan tamamlama mantığı: Proje boyunca tamamlanması planlanan toplam 300 puanlık backlog bulunmaktadır. Proje 3 sprint’e bölündüğünde, ikinci sprintin de 100 puanlık iş yükü ile devam etmesi kararlaştırılmıştır.
+
+Backlog düzeni ve Story seçimleri: Backlog, kullanıcı ihtiyaçlarına ve projenin temel fonksiyonlarını ortaya çıkaracak şekilde düzenlenmiştir. Görevler sprint başına tahmin edilen 100 puanı aşmayacak biçimde dağıtılmıştır.
+
+---
+
+Daily Scrum: Daily Scrum toplantılarımız Microsoft Teams üzerinden yapılmaya devam edilmiştir. Ayrıca gün içi iletişim ve hızlı bilgi akışı için WhatsApp grubu kullanılmaya devam edilmiştir. Daily Scrum toplantıları ve önemli güncel konuşmalar ayrıca arşivlenmiştir.
+
+<img width="1919" height="752" alt="toplantı_1" src="https://github.com/user-attachments/assets/7c981fd9-f1c4-4d52-989d-f555ed9c0252" />
+![meet](https://github.com/user-attachments/assets/45f572b6-6308-4e83-83e0-00a59c0fc5f0)
+
+---
+
+![wp1](https://github.com/user-attachments/assets/e6065224-a6c3-484d-a8c1-fc1a1f48c3e6)
+![wp2](https://github.com/user-attachments/assets/9bb39e46-bc4f-45dd-87e9-247f63d1d25b)
+
+---
+
+Sprint board update: Sprint board screenshot:
+<img width="1215" height="740" alt="sprint2_1" src="https://github.com/user-attachments/assets/3737dbe6-42f6-4efd-918f-d8c641c7ee67" />
+<img width="1206" height="765" alt="sprin2_2" src="https://github.com/user-attachments/assets/5d5c9724-eaeb-49a9-9a8f-ff5945d73208" />
+
+---
+
+Ürün Durumu: Ekran Görüntüleri Sprint 2 sonunda geliştirilen temel arayüz bileşenleri, yükleme ekranları, sadeleştirilmiş metin gösterim sayfası ve temel OCR yükleme ekranları tamamlanmış ve ekran görüntüleri dokümana eklenmiştir.
+
+![prj0](https://github.com/user-attachments/assets/cd185c79-c590-4cb0-9bfe-c5d8c842788c)
+![prj1](https://github.com/user-attachments/assets/4a23a0ff-f715-4e6d-80e7-1fc19b66a614)
+
+---
+
+Sprint Review
+Sprint 2 sonunda ekip, tamamlanan iş paketleri ve geliştirmelerin güncel durumunu değerlendirdi. Kullanıcı hikayelerine göre tasarlanan arayüz ve NLP entegrasyonu ekip tarafından incelendi ve genel olarak olumlu geri bildirim alındı. Özellikle arayüzdeki sadelik ve OCR yükleme adımının kullanıcı dostu olması takdir topladı.
+Sprint sonunda, ilerleyen sprintte odaklanılacak optimizasyon ve hata yönetimi konuları belirlendi ve önceliklendirildi.
+
+Katılımcılar: Caner Tuzluca, Mine Kırmacı, Yusuf Zeytun, Merve Gül Bilir
+
+---
+
+ Sprint Retrospective
+Ekip, sprint süresince yapılanları ve karşılaşılan zorlukları değerlendirdi.
+
+İyi yönler: Ekip içi iletişimin güçlü olması, görev dağılımının dengeli yapılması ve planlama sürecinin iyi ilerlemesi.
+
+İyileştirilmesi gerekenler: Dokümantasyonun daha erken tamamlanması ve görev durumlarının daha sık güncellenmesi.
+
+Aksiyonlar: Görev durumları için günlük küçük notlar tutulacak ve her gün sonunda backlog güncellenecek.
+
+Grup 1 (Caner, Mine): Yazılım ve NLP geliştirmelerine odaklanacak.
+Grup 2 (Yusuf, Merve): Dokümantasyon ve test senaryolarını hazırlayacak.
+
+Toplantıların düzenli olarak devam etmesine ve ihtiyaç listelerinin güncel tutulmasına karar verildi.
+
+---
+
+
+
+
 
