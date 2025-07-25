@@ -1,19 +1,28 @@
+# ocr_service.py
+import os
 import pytesseract
 from PIL import Image
-import io
+from dotenv import load_dotenv
 
-# pytesseract'ın sistem PATH'inde olduğundan emin olun veya exe yolunu belirtin.
-# Örneğin: pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-# Eğer Linux veya macOS kullanıyorsanız ve tesseract yüklüyse bu satıra genellikle gerek kalmaz.
+# .env dosyasını yükle
+load_dotenv()
+
+# Eğer varsa özel tesseract yolu tanımlanır
+CUSTOM_TESSERACT_PATH = os.getenv("TESSERACT_CMD")
+if CUSTOM_TESSERACT_PATH:
+    pytesseract.pytesseract.tesseract_cmd = CUSTOM_TESSERACT_PATH
 
 def extract_text_from_image(image: Image.Image) -> str:
     """
-    PIL Image nesnesinden metin çıkarır.
+    Görsel üzerinden OCR ile metin çıkarır.
 
     Args:
-        image (PIL.Image.Image): Metin çıkarılacak görüntü nesnesi.
+        image (PIL.Image.Image): OCR uygulanacak görsel.
 
     Returns:
-        str: Görüntüden çıkarılan metin.
+        str: Görselden çıkarılan metin.
     """
-    return pytesseract.image_to_string(image)
+    try:
+        return pytesseract.image_to_string(image)
+    except Exception as e:
+        return f"OCR hatası: {e}"

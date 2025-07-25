@@ -1,37 +1,46 @@
+# openai_service.py
 from openai import OpenAI
+from config import OPENAI_API_KEY
 
-def get_medical_advice(report_text: str, api_key: str) -> str:
+client = OpenAI(api_key=OPENAI_API_KEY)
+
+def get_medical_advice(report_text: str, user_profile: dict = None) -> str:
     """
-    Verilen rapor metnini kullanarak OpenAI'dan tıbbi tavsiye ve beslenme programı alır.
+    Verilen rapor metni ve varsa kullanıcı profiline göre tıbbi öneriler döner.
 
     Args:
         report_text (str): Doktor raporu veya tahlil sonucu metni.
-        api_key (str): OpenAI API anahtarı.
+        user_profile (dict, optional): Kullanıcının yaşı, kilosu, hastalık geçmişi gibi bilgiler.
 
     Returns:
-        str: OpenAI'dan gelen sadeleştirilmiş rapor, sağlık tavsiyeleri ve beslenme programı.
+        str: OpenAI'dan gelen sadeleştirilmiş rapor, sağlık tavsiyeleri ve beslenme önerisi.
     """
-    client = OpenAI(api_key=api_key)
+    profile_info = ""
+    if user_profile:
+        profile_info = "\n\nKullanıcı Profili:\n"
+        for key, value in user_profile.items():
+            profile_info += f"- {key.capitalize()}: {value}\n"
 
     prompt = f"""
-    Her tavsiyende lütfen satırbaşı yaparak metin oluştur.
-    Aşağıdaki doktor raporunu halkın kolayca anlayacağı şekilde sadeleştir.
-    Ayrıca sağlık tavsiyelerini 3 ile 5 arasında olmak üzere maddeler halinde ver.
-    Kullanıcıya sağlık sorununu gidermek için örnek bir beslenme listesi de oluşturmalısın.
-    Ayrıca beslenme listesini neden oluşturduğunu, ne işe yaradığını birkaç cümle ile açıklamalısın.
+    Aşağıdaki doktor raporunu herkesin anlayabileceği şekilde sadeleştir.
+    Ayrıca sağlık tavsiyelerini (3-5 madde) açıkla ve kullanıcıya uygun bir günlük beslenme planı sun.
+    Beslenme planının amacını birkaç cümleyle belirt.
 
     Rapor:
     {report_text}
+    {profile_info}
 
     Cevap:
     """
 
-    response = client.chat.completions.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": "Sen bir kişisel sağlık asistanısın."},
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    return response.choices[0].message.content.strip()
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "Sen kişisel sağlık danışmanı olarak görev yapıyorsun."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        return f"⚠️ Hata: {str(e)}"
