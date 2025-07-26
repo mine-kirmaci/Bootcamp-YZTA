@@ -1,10 +1,10 @@
-import streamlit as st
-from PIL import Image
 import os
 from datetime import datetime
+from PIL import Image
+import streamlit as st
 from config import reports_collection, users_collection
 from ocr_service import extract_text_from_image
-from openai_service import get_medical_advice
+from openai_service import get_medical_advice, get_report_title
 from auth import authenticate_user, register_user
 
 # Sayfa başlığı ve tema
@@ -91,76 +91,102 @@ def dashboard():
         st.rerun()
 
     st.title("📋 Sağlık Raporu Analizi")
-
-    # Sidebar: Rapor başlıkları her zaman gösterilsin
     st.sidebar.markdown("### 📜 Önceki Raporlar")
 
     user_reports = list(reports_collection.find({"user": st.session_state["user"]}).sort("created_at", -1))
-
     selected_report = None
+
     if user_reports:
-        titles = [
-            f"{r.get('report_title', 'Başlıksız Rapor')} ({r['created_at'].strftime('%d.%m.%Y %H:%M')})"
-            for r in user_reports
-        ]
+        # Yeni başlık oluşturmayı sidebar’a da yansıt
+        titles = []
+        for r in user_reports:
+            if not r.get("report_title") or r["report_title"] == "Başlıksız Rapor":
+                generated_title = get_report_title(r["original_text"])
+                titles.append(f"{generated_title} ({r['created_at'].strftime('%d.%m.%Y %H:%M')})")
+                r["report_title"] = generated_title  # title to match during selection
+            else:
+                titles.append(f"{r['report_title']} ({r['created_at'].strftime('%d.%m.%Y %H:%M')})")
+
         selected = st.sidebar.radio("📑 Rapor Seç", titles, key="sidebar_report_selection")
 
         selected_report = next(
-            r for r in user_reports
-            if f"{r.get('report_title', 'Başlıksız Rapor')} ({r['created_at'].strftime('%d.%m.%Y %H:%M')})" == selected
+            (r for r in user_reports if f"{r['report_title']} ({r['created_at'].strftime('%d.%m.%Y %H:%M')})" == selected),
+            None
         )
     else:
         st.sidebar.info("Herhangi bir rapor bulunamadı.")
 
-    # Eğer yeni sohbet başlatılmadıysa ve bir rapor seçildiyse detaylarını göster
-    if not st.session_state.get("start_new_chat", False) and selected_report:
-        st.markdown(f"### 📝 Rapor: {selected_report.get('report_title', 'Başlıksız Rapor')}")
+    if selected_report and not st.session_state.get("start_new_chat", False):
+        st.session_state["start_new_chat"] = False  # önceki raporu açarken yeni yükleme modu kapansın
+        st.session_state["page"] = "dashboard"
+
+        title_to_display = selected_report.get("report_title", "Başlıksız Rapor")
+        st.markdown(f"### 📝 Rapor: {title_to_display}")
+
         if selected_report.get("uploaded_filename"):
             path = os.path.join(UPLOAD_FOLDER, selected_report["uploaded_filename"])
             if os.path.exists(path):
-                st.image(path, caption="🖼️ Yüklenen Rapor", use_container_width=True)
+                st.markdown("<div style='text-align:center'>", unsafe_allow_html=True)
+                st.image(path, caption="🖼️ Yüklenen Rapor", width=350)
+                st.markdown("</div>", unsafe_allow_html=True)
         else:
-            st.markdown(f"**Orijinal Metin:**\n\n{selected_report['original_text']}")
+            st.markdown(f"**Orijinal Metin:**\n\n{selected_report.get('original_text', '')}")
 
-        st.markdown(f"**AI Açıklaması:**\n\n{selected_report['ai_response']}")
+        st.markdown(f"**🧠 AI Açıklaması:**\n\n{selected_report.get('ai_response', 'Yok')}")
 
-    # Eğer yeni sohbet başlatıldıysa yeni rapor yükleme alanını göster
+
     if st.session_state.get("start_new_chat", False):
         st.markdown("### 📤 Yeni Rapor Yükle")
         title = st.text_input("📌 Rapor Başlığı", max_chars=100, key="new_title")
         file = st.file_uploader("📄 Görsel Rapor", type=["jpg", "jpeg", "png"], key="new_file")
         text_input = st.text_area("✍️ Metni yapıştır", key="new_text")
 
-    # Analiz başlatma tuşuna basınca:
-    if st.button("🔍 Analizi Başlat", key="analyze_btn"):
-        ...
-        if not text.strip():
-            st.error("Boş içerik algılandı.")
-            return
+        if st.button("🔍 Analizi Başlat", key="analyze_btn"):
+            if not file and not text_input:
+                st.error("Lütfen görsel yükleyin veya metin girin.")
+                return
 
-        user_doc = users_collection.find_one({"email": st.session_state["user"]})
-        profile = user_doc.get("profile") if user_doc else None
+            filename = None
+            if file:
+                image = Image.open(file)
+                ext = file.name.split(".")[-1]
+                ts = datetime.now().strftime("%Y%m%d%H%M%S")
+                filename = f"{st.session_state['user']}_{ts}.{ext}"
+                image.save(os.path.join(UPLOAD_FOLDER, filename))
+                text = extract_text_from_image(image)
+            else:
+                text = text_input
 
-        with st.spinner("🧠 Yapay zekâ analiz ediyor..."):
-            result = get_medical_advice(text, user_profile=profile)
+            if not text.strip():
+                st.error("Boş içerik algılandı.")
+                return
 
-            # Boşsa başlık üret
-            report_title = title.strip() if title.strip() else get_report_title(text)
+            report_title = title.strip()
+            if not report_title:
+                with st.spinner("🧠 Başlık üretiliyor..."):
+                    report_title = get_report_title(text)
+                if not report_title:
+                    report_title = "Başlıksız Rapor"
 
-        reports_collection.insert_one({
-            "user": st.session_state["user"],
-            "report_title": report_title,
-            "original_text": text,
-            "ai_response": result,
-            "uploaded_filename": filename,
-            "created_at": datetime.utcnow()
-        })
+            user_doc = users_collection.find_one({"email": st.session_state["user"]})
+            profile = user_doc.get("profile") if user_doc else None
 
+            with st.spinner("🧠 Yapay zekâ analiz ediyor..."):
+                result = get_medical_advice(text, user_profile=profile)
 
-        st.session_state["ai_result"] = result
-        st.session_state["start_new_chat"] = False
-        st.session_state["page"] = "result"
-        st.rerun()
+            reports_collection.insert_one({
+                "user": st.session_state["user"],
+                "report_title": report_title,
+                "original_text": text,
+                "ai_response": result,
+                "uploaded_filename": filename,
+                "created_at": datetime.utcnow()
+            })
+
+            st.session_state["ai_result"] = result
+            st.session_state["start_new_chat"] = False
+            st.session_state["page"] = "result"
+            st.rerun()
 
 # Sonuç sayfası
 def result_page():
@@ -187,4 +213,5 @@ def main():
             result_page()
 
 if __name__ == "__main__":
-    main()
+    main() 
+
