@@ -116,8 +116,8 @@ def dashboard():
     else:
         st.sidebar.info("Herhangi bir rapor bulunamadı.")
 
-    if selected_report and not st.session_state.get("start_new_chat", False):
-        st.session_state["start_new_chat"] = False  # önceki raporu açarken yeni yükleme modu kapansın
+    if selected_report and st.session_state.get("page") == "dashboard" and not st.session_state.get("start_new_chat", False):
+        st.session_state["start_new_chat"] = False # önceki raporu açarken yeni yükleme modu kapansın
         st.session_state["page"] = "dashboard"
 
         title_to_display = selected_report.get("report_title", "Başlıksız Rapor")
@@ -133,6 +133,22 @@ def dashboard():
             st.markdown(f"**Orijinal Metin:**\n\n{selected_report.get('original_text', '')}")
 
         st.markdown(f"**🧠 AI Açıklaması:**\n\n{selected_report.get('ai_response', 'Yok')}")
+
+        # AI'ya soru sor özelliği
+        with st.expander("❓ Bu raporla ilgili bir soru sorun"):
+            user_q = st.text_input("Sorunuzu yazın", key="user_followup_question")
+            if st.button("Yanıt Al", key="ask_followup_btn"):
+                with st.spinner("AI yanıtlıyor..."):
+                    from openai_service import get_medical_advice  # varsa yukarıya alma
+                    user_doc = users_collection.find_one({"email": st.session_state['user']})
+                    profile = user_doc.get("profile") if user_doc else None
+
+                    followup_response = get_medical_advice(
+                        f"Rapor metni: {selected_report.get('original_text', '')}\n\n"
+                        f"Soru: {user_q}",
+                        user_profile=profile
+                    )
+                    st.markdown(f"**🗣️ AI'nin Yanıtı:**\n\n{followup_response}")
 
 
     if st.session_state.get("start_new_chat", False):

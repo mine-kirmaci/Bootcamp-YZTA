@@ -37,12 +37,13 @@ def get_medical_advice(report_text: str, user_profile: dict = None) -> str:
     full_prompt = f"""
 🩺 Aşağıda bir hasta raporu var. Lütfen bu metni halkın kolayca anlayabileceği bir şekilde sadeleştir.
 
-🌟 Şu adımları takip et:
-1. Raporun ne anlattığını sade ve net cümlelerle açıkla.
-2. Kullanıcının durumuna göre 3-5 adet basit, uygulanabilir sağlık önerisi ver.
-3. Yaş, kilo, cinsiyet ve geçmiş hastalıkları dikkate alarak örnek bir günlük beslenme listesi hazırla.
-4. İlaç, alerji veya geçmiş hastalık bilgileri eksikse “Şu bilgi eksik olabilir” şeklinde nazikçe belirt ama önerilerini yine de sürdür.
-5. Tıbbi terimleri kullanma; halkın anlayacağı şekilde konuş. Anlatımın sıcak, öğretici ve samimi olsun. Uzun olabilir ama asla korkutucu ya da karmaşık olmasın.
+🌟 Şu adımları dikkatlice takip et:
+1. Raporun hangi tetkike (örneğin MR, ultrason, kan tahlili vb.) ait olduğunu anlamaya çalış. Hangi organ ya da sistemi incelediğini belirt. Rapor tarihine dair bilgi varsa bunu da ekle. 
+   Ardından raporun detaylarında neler söylendiğini adım adım ve sade bir şekilde açıkla. Özellikle geçen tıbbi bulguların ne anlama geldiğini halka açık dille anlat. "Bulgu yok" gibi ifadeleri bile detaylıca sadeleştir.
+2. Kullanıcının yaş, kilo, cinsiyet, hastalık geçmişi, alerjileri ve ilaç bilgilerine göre 3-5 basit ve uygulanabilir sağlık önerisi ver.
+3. Yukarıdaki bilgilere dayanarak örnek bir günlük beslenme listesi hazırla.
+4. Eğer bazı bilgiler eksikse (örneğin ilaç adı, D vitamini dozu), "Şu bilgi eksik olabilir" gibi kibar bir not düş, ama yine de açıklamayı sürdür.
+5. Tıbbi terimleri halk diline çevirerek açıkla. Karmaşık veya korkutucu ifadeler kullanma. Anlatım tarzın sıcak, öğretici ve moral verici olsun.
 
 📄 Hasta Raporu:
 {report_text}
@@ -73,3 +74,4 @@ def get_medical_advice(report_text: str, user_profile: dict = None) -> str:
 
     except Exception as e:
         return f"⚠️ Yapay zekâ analizinde bir hata oluştu:\n\n{str(e)}"
+
