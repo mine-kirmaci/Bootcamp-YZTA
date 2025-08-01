@@ -1,7 +1,8 @@
-##requirements.py
 streamlit
 openai
 Pillow
 pytesseract
 python-dotenv
 pymongo
+gTTS
+pygame
