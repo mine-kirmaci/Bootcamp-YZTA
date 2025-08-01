@@ -210,6 +210,61 @@ Toplantıların düzenli olarak devam etmesine ve ihtiyaç listelerinin güncel 
 
 ---
 
+# Sprint 3
+
+---
+
+User Story’ler, product backlog içerisine yazılmıştır. Her bir backlog item’a tıklanarak ilgili hikayelerin detayları incelenebilmektedir. Sprint 3’te kullanıcı deneyimini geliştirmeye ve projenin işlevsel olarak tamamlanmasına odaklanılmıştır.
+
+---
+
+Sprint içinde tamamlanması tahmin edilen puan:
+100 Puan
+
+---
+
+Puan tamamlama mantığı: Proje boyunca tamamlanması hedeflenen toplam 300 puanlık backlog bulunmaktadır. Bu iş yükü, 3 sprint’e bölünerek planlanmıştır. Üçüncü sprintin de 100 puanlık görevle tamamlanması gerektiği kararlaştırılmıştır. Bu sprintle birlikte tüm backlog başarıyla tamamlanmıştır.
+
+---
+
+Backlog düzeni ve Story seçimleri: Bu sprintin backlog’u, uygulamanın son kullanıcıya sunulabilir final versiyonunu oluşturmayı hedeflemiştir. Görevler sprint başına belirlenen 100 puanı geçmeyecek şekilde düzenlenmiştir.
+
+---
+
+Daily Scrum: Daily Scrum toplantıları Microsoft Teams üzerinden düzenli olarak gerçekleştirilmiştir. Ekip üyeleri her gün bir araya gelerek o gün yapılacak görevleri planlamış, varsa karşılaşılan problemleri paylaşarak çözüm üretmiştir. Gün içi hızlı iletişim ve koordinasyon için WhatsApp grubu da aktif şekilde kullanılmıştır.
+
+<img width="1286" height="910" alt="sprint3wp" src="https://github.com/user-attachments/assets/b4ee87ca-1e19-47d5-bc69-cf213a4d6e3a" />
+
+---
+
+Sprint board update:
+<img width="1208" height="721" alt="sprint3_1" src="https://github.com/user-attachments/assets/0ce2547e-0683-48af-a9d5-2c68fac2375d" />
+
+<img width="1212" height="766" alt="sprint3_2" src="https://github.com/user-attachments/assets/5d59c1e7-f4e8-496c-8227-4dfaf5aaf072" />
+
+<img width="1209" height="771" alt="sprint3_3" src="https://github.com/user-attachments/assets/5950a5e4-1468-474a-a3ab-3c8272264c8f" />
+
+---
+
+Sprint Review:
+
+Scrum süreci boyunca ekip tüm görevleri eksiksiz şekilde tamamlamış ve birbirini tebrik etmiştir. Bu sprintte aşağıdaki çıktılar elde edilmiştir:
+Uygulamanın çalışır ve kullanıcı dostu sürümü başarıyla tamamlanmıştır
+Raporları sesli okuma (TTS) özelliği entegre edilmiştir
+Geçmiş raporları görüntüleme ve yeniden erişim özelliği geliştirilmiştir
+Toplamda hedeflenen 300 puanlık backlog başarıyla tamamlanmıştır.
+Sprint Review Katılımcıları:
+Caner Tuzluca, Mine Kırmacı, Yusuf Zeytun, Merve Gül Bilir
+
+---
+
+Sprint Retrospective:
+
+Ekip sprint sürecinde oldukça uyumlu çalışmış, iletişim kanalları verimli kullanılmış ve görev paylaşımı başarılı şekilde yapılmıştır.
+
+---
+
+
 
 
 
