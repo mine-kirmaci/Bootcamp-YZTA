@@ -214,7 +214,7 @@ Toplantıların düzenli olarak devam etmesine ve ihtiyaç listelerinin güncel 
 
 ---
 
-User Story’ler, product backlog içerisine yazılmıştır. Her bir backlog item’a tıklanarak ilgili hikayelerin detayları incelenebilmektedir. Sprint 3’te kullanıcı deneyimini geliştirmeye ve projenin işlevsel olarak tamamlanmasına odaklanılmıştır.
+User Story’ler, product backlog içerisine yazılmıştır. Her bir backlog item’a tıklanarak ilgili hikayelerin detayları incelenebilmektedir. Sprint 3’te kullanıcı deneyimini geliştirmeye ve projenin işlevsel olarak tamamlanmasına odaklanılmıştır. Ayrıca Uygulamaya sesli dinleme ve analiz edilen rapora soru sorma özellikleri eklenmiştir.
 
 ---
 
