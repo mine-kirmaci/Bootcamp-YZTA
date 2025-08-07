@@ -264,6 +264,10 @@ Ekip sprint sürecinde oldukça uyumlu çalışmış, iletişim kanalları verim
 
 ---
 
+Proje videoumuza aşağıdaki linkten ulaşabilirsiniz:
+https://www.youtube.com/watch?v=GnH8mS5X5Wg&ab_channel=CanerTuzluca
+
+---
 
 
 
